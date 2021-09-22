@@ -32,6 +32,7 @@
 #endif /* USE_IDEA */
 #ifdef USE_AES
 #include <openssl/aes.h>
+#include <openssl/modes.h>
 #endif /* USE_AES */
 #include <openssl/cast.h>
 #include <openssl/rand.h>
