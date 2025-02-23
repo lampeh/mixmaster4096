@@ -8,22 +8,22 @@
 # $Id: Makefile.in 647 2003-10-25 23:34:13Z weasel $
 
 # Edit according to the libraries you want to use:
-INC =  -I/usr/include
-DEF =  -DNDEBUG -DUSE_ZLIB -DUSE_PCRE -DUSE_AES -DUSE_NCURSES -DHAVE_NCURSES_H -DUSE_SOCK -DHAVE_SETENV -DSPOOL='"./Mix/"'
+INC =
+#INC = -I/usr/include
+DEF = -DUSE_ZLIB -DUSE_PCRE -DUSE_AES -DUSE_NCURSES -DHAVE_NCURSES_H -DUSE_SOCK -DHAVE_SETENV -DSPOOL='"./Mix/"'
 LIBS = -lz -lpcre -lcrypto -lncurses
 
 # Set compiler options
 # Note: Define NDEBUG to disable "assert" when not using DEBUG
 
-OPT = -g -O3 -flto=auto
-# OPT = -g -pg -Wall -DDEBUG
-# OPT = -O2 -Wall -DNDEBUG
+OPT = -g -O3 -flto=auto -DNDEBUG
+# OPT = -g -pg -DDEBUG
 
 CFLAGS = $(INC) $(DEF) $(OPT) -Wall -Wno-unused-result -Wno-pointer-sign -Wno-discarded-qualifiers -ffunction-sections -fdata-sections
 LDFLAGS = $(OPT) -Wl,-gc-sections,-print-gc-sections $(LIBS)
-CC = gcc
-AR = ar rc
-RANLIB = ranlib
+#CC = gcc
+#AR = ar
+#RANLIB = ranlib
 #MAKE = make
 
 OBJ = mix.o rem.o rem1.o rem2.o chain.o chain1.o chain2.o nym.o pgp.o pgpdb.o pgpdata.o pgpget.o pgpcreat.o pool.o mail.o rfc822.o mime.o keymgt.o compress.o stats.o crypto.o random.o util.o buffers.o maildir.o parsedate.tab.o
@@ -38,7 +38,7 @@ mixmaster: $(OBJ) $(MIXOBJ) main.o
 	$(CC) $(OBJ) $(MIXOBJ) main.o $(LDFLAGS) -o mixmaster
 
 libmix.a: $(OBJ) $(MIXOBJ) dllmain.o
-	$(AR) libmix.a $(OBJ) $(MIXOBJ) dllmain.o
+	$(AR) rc libmix.a $(OBJ) $(MIXOBJ) dllmain.o
 
 libmix32.a: libmix.a mixlib.def
 	dllwrap --dllname mixlib.dll --def mixlib.def --output-lib libmix32.a libmix.a zlib-1.1.4/libz.a pcre-2.08/libpcre.a openssl/libeay32.a -lwsock32
@@ -65,7 +65,7 @@ test:	$(OBJ) test.o $(NOMENUOBJ)
 	$(CC) $(OBJ) test.o $(NOMENUOBJ) $(LDFLAGS) -o test
 
 clean:
-	-rm -f *.o *.a *.res *~ mixmaster mix *.exe remailer test mpgp core gmon.out
+	-rm -f *.o *.a *.res *~ mixmaster mix *.exe remailer test mpgp core gmon.out parsedate parsedate.tab.c
 
 allclean: clean
 	-rm -f Makefile
