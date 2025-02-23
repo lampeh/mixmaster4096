@@ -345,7 +345,7 @@ static int pgp_ideadecrypt(BUFFER *in, BUFFER *out, BUFFER *key, int mdc)
   int i, n;
   IDEA_KEY_SCHEDULE ks;
   SHA_CTX c;
-  char md[20]; /* we could make hdr 20 bytes long and reuse it for md */
+  byte md[20]; /* we could make hdr 20 bytes long and reuse it for md */
 
   if (key->length != 16 || in->length <= (mdc?(1+10+22):10))
     return (-1);
@@ -407,7 +407,7 @@ static int pgp_3desdecrypt(BUFFER *in, BUFFER *out, BUFFER *key, int mdc)
   DES_key_schedule ks2;
   DES_key_schedule ks3;
   SHA_CTX c;
-  char md[20]; /* we could make hdr 20 bytes long and reuse it for md */
+  byte md[20]; /* we could make hdr 20 bytes long and reuse it for md */
 
   if (key->length != 24 || in->length <= (mdc?(1+10+22):10))
     return (-1);
@@ -468,7 +468,7 @@ static int pgp_castdecrypt(BUFFER *in, BUFFER *out, BUFFER *key, int mdc)
   byte hdr[10];
   int i, n;
   SHA_CTX c;
-  char md[20]; /* we could make hdr 20 bytes long and reuse it for md */
+  byte md[20]; /* we could make hdr 20 bytes long and reuse it for md */
 
   CAST_KEY ks;
 
@@ -528,7 +528,7 @@ static int pgp_bfdecrypt(BUFFER *in, BUFFER *out, BUFFER *key, int mdc)
   byte hdr[10];
   int i, n;
   SHA_CTX c;
-  char md[20]; /* we could make hdr 20 bytes long and reuse it for md */
+  byte md[20]; /* we could make hdr 20 bytes long and reuse it for md */
 
   BF_KEY ks;
 
@@ -589,7 +589,7 @@ static int pgp_aesdecrypt(BUFFER *in, BUFFER *out, BUFFER *key, int mdc)
   byte hdr[18];
   int i, n;
   SHA_CTX c;
-  char md[20]; /* we could make hdr 20 bytes long and reuse it for md */
+  byte md[20]; /* we could make hdr 20 bytes long and reuse it for md */
 
   AES_KEY ks;
 

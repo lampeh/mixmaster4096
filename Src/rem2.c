@@ -144,7 +144,7 @@ static int isnewid(BUFFER *id, char rsa1234, long timestamp)
   i = lockfile(IDLOG);
   while (fread(&idbuf, 1, sizeof(idlog_t), f) == sizeof(idlog_t)) {
     if (!memcmp(idbuf.id, id->data, sizeof(idbuf.id))) {
-      char idstr[33];
+      byte idstr[33];
       id_encode(id->data, idstr);
       errlog(LOG, "Ignoring redundant message: %s.\n", idstr);
       ret = 0;
@@ -719,7 +719,8 @@ end:
 
 int v2partial(BUFFER *m, BUFFER *mid, int packet, int numpackets)
 {
-  char fname[PATHMAX], idstr[33];
+  char fname[PATHMAX];
+  byte idstr[33];
   FILE *f;
   int err = 1;
 

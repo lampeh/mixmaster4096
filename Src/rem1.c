@@ -55,7 +55,7 @@ int t1_decrypt(BUFFER *in)
 void t1_esub(BUFFER *esub, BUFFER *subject)
 {
   BUFFER *iv, *out;
-  char hex[33];
+  byte hex[33];
 
   iv = buf_new();
   out = buf_new();
@@ -81,7 +81,7 @@ void t1_esub(BUFFER *esub, BUFFER *subject)
 void t1_hsub(BUFFER *subject)
 {
   BUFFER *iv, *out;
-  char hex[33];
+  byte hex[33];
 
   iv = buf_new();
   out = buf_new();
