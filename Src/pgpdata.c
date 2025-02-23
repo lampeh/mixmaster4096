@@ -1144,7 +1144,7 @@ end:
 static void *params(int dsa, int bits)
 {
   DSA *k = NULL;
-  BIGNUM *key_p, *key_q, *key_g;
+  const BIGNUM *key_p, *key_q, *key_g;
   DH *d = NULL;
   FILE *f;
   BUFFER *p, *n;
@@ -1382,7 +1382,7 @@ int pgp_dsasign(BUFFER *data, BUFFER *key, BUFFER *out)
   BUFFER *mpi, *b;
   DSA *d;
   DSA_SIG *sig = NULL;
-  BIGNUM *key_p, *key_q, *key_g, *pub_key, *priv_key, *sig_s, *sig_r;
+  const BIGNUM *key_p, *key_q, *key_g, *pub_key, *priv_key, *sig_s, *sig_r;
 
   d = DSA_new();
   b = buf_new();
