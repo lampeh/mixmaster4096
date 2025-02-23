@@ -196,6 +196,8 @@ char ENTEREDPASSPHRASE[LINELEN] = "";
 static int rereadconfig = 0;
 static int terminatedaemon = 0;
 
+int mix_global_verbose = 0;
+
 #if defined(S_IFDIR) && !defined(S_ISDIR)
 #define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
 #endif /* defined(S_IFDIR) && !defined(S_ISDIR) */

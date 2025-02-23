@@ -804,7 +804,7 @@ int buf_unzip(BUFFER *buf, int type);
 
 #define RSASTATSFILE "rsastats.daily"
 #define RSATEXTFILE  "rsastats.txt"
-int mix_global_verbose;
+extern int mix_global_verbose;
 
 #include <stdio.h>
 #include <time.h>

@@ -299,7 +299,7 @@ int pgp_signhashalgo(BUFFER *algo, BUFFER *userid, char *secring,
 		     BUFFER *pass);
 
 /* menu */
-int menu_initialized;
+extern int menu_initialized;
 void menu_main(void);
 void menu_folder(char command, char *name);
 int menu_getuserpass(BUFFER *p, int mode);

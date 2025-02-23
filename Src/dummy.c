@@ -2,6 +2,8 @@
 
 #include "mix3.h"
 
+int menu_initialized = 0;
+
 int menu_getuserpass(BUFFER *b, int i)
 {
   return -1;

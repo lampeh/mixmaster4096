@@ -312,12 +312,12 @@ extern char NYMDB[];
  * The following variables are read from mix.cfg, with default values
  * defined in mix.c */
 
-int REMAIL;
-int MIX;
-int PGP;
-int UNENCRYPTED;
-int REMIX;
-int REPGP;
+extern int REMAIL;
+extern int MIX;
+extern int PGP;
+extern int UNENCRYPTED;
+extern int REMIX;
+extern int REPGP;
 extern char MIXDIR[];
 extern char POOLDIR[];
 extern char EXTFLAGS[];
