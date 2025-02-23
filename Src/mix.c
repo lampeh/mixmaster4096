@@ -742,8 +742,8 @@ int mix_config(void)
   }
 
   /* set SECRINGNEW after reading SECRING from cfg file */
-  strncpy(SECRINGNEW, SECRING, PATHMAX);
-  strncat(SECRINGNEW, ".new", PATHMAX); SECRINGNEW[PATHMAX-1]='\0';
+  strncpy(SECRINGNEW, SECRING, PATHMAX); SECRINGNEW[PATHMAX-1]='\0';
+  strcatn(SECRINGNEW, ".new", PATHMAX);
   mixfile(POOLDIR, POOL); /* set POOLDIR after reading POOL from cfg file */
   if (POOLDIR[strlen(POOLDIR) - 1] == DIRSEP)
     POOLDIR[strlen(POOLDIR) - 1] = '\0';
