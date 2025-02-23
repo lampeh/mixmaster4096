@@ -23,12 +23,13 @@ int isline(BUFFER *line, char *text)
   int i;
 
   if (!bufileft(line, text))
-    return (0);
+    return 0;
 
-    for (i = strlen(text); i < line->length; i++)
-      if (!isspace(line->data[i]))
-	return(0);
-    return(1);
+  for (i = strlen(text); i < line->length; i++)
+    if (!isspace(line->data[i]))
+      return 0;
+
+  return 1;
 }
 
 int t1_decrypt(BUFFER *in)
