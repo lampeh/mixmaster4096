@@ -10,12 +10,12 @@
 # Edit according to the libraries you want to use:
 INC =  -I/usr/include
 DEF =  -DNDEBUG -DUSE_ZLIB -DUSE_PCRE -DUSE_AES -DUSE_NCURSES -DHAVE_NCURSES_H -DUSE_SOCK -DHAVE_SETENV -DSPOOL='"./Mix/"'
-LIBS = -ldl -lz -lpcre -lcrypto -lncurses
+LIBS = -lz -lpcre -lcrypto -lncurses
 
 # Set compiler options
 # Note: Define NDEBUG to disable "assert" when not using DEBUG
 
-OPT = -g -O3 -flto
+OPT = -g -O3 -flto=auto
 # OPT = -g -pg -Wall -DDEBUG
 # OPT = -O2 -Wall -DNDEBUG
 
@@ -34,8 +34,8 @@ WINOBJ = winmain.o winutil.o
 
 all:	mixmaster
 
-mixmaster: $(OBJ) $(MIXOBJ) main.o $(LIBS)
-	$(CC) $(OBJ) $(MIXOBJ) main.o $(LIBS) $(LDFLAGS) -o mixmaster
+mixmaster: $(OBJ) $(MIXOBJ) main.o
+	$(CC) $(OBJ) $(MIXOBJ) main.o $(LDFLAGS) -o mixmaster
 
 libmix.a: $(OBJ) $(MIXOBJ) dllmain.o
 	$(AR) libmix.a $(OBJ) $(MIXOBJ) dllmain.o
@@ -55,14 +55,14 @@ winmix: winmenu.res #winmix.exe
 winmenu.o:	winmenu.rc winmenu.h
 	windres winmenu.rc winmenu.o
 
-remailer:	$(OBJ) $(NOMENUOBJ) remailer.o $(LIBS)
-	$(CC) $(OBJ) $(NOMENUOBJ) remailer.o $(LIBS) $(LDFLAGS) -o remailer
+remailer:	$(OBJ) $(NOMENUOBJ) remailer.o
+	$(CC) $(OBJ) $(NOMENUOBJ) remailer.o $(LDFLAGS) -o remailer
 
-mpgp:	$(OBJ) $(NOMENUOBJ) mpgp.o $(LIBS)
-	$(CC) $(OBJ) $(NOMENUOBJ) mpgp.o $(LIBS) $(LDFLAGS) -o mpgp
+mpgp:	$(OBJ) $(NOMENUOBJ) mpgp.o
+	$(CC) $(OBJ) $(NOMENUOBJ) mpgp.o $(LDFLAGS) -o mpgp
 
-test:	$(OBJ) test.o $(NOMENUOBJ) $(LIBS)
-	$(CC) $(OBJ) test.o $(NOMENUOBJ) $(LIBS) $(LDFLAGS) -o test
+test:	$(OBJ) test.o $(NOMENUOBJ)
+	$(CC) $(OBJ) test.o $(NOMENUOBJ) $(LDFLAGS) -o test
 
 clean:
 	-rm -f *.o *.a *.res *~ mixmaster mix *.exe remailer test mpgp core gmon.out
