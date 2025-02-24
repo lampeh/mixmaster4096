@@ -10,7 +10,7 @@
 # Edit according to the libraries you want to use:
 INC =
 #INC = -I/usr/include
-DEF = -DUSE_ZLIB -DUSE_PCRE -DUSE_AES -DUSE_NCURSES -DHAVE_NCURSES_H -DUSE_SOCK -DHAVE_SETENV -DSPOOL='"./Mix/"'
+DEF = -DUSE_ZLIB -DUSE_PCRE -DUSE_AES -DUSE_NCURSES -DHAVE_NCURSES_H -DUSE_SOCK -DHAVE_SETENV
 LIBS = -lz -lpcre -lcrypto -lncurses
 
 # Set compiler options
